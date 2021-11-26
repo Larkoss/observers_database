@@ -231,7 +231,7 @@ GO
 CREATE VIEW dbo.[Questions per Questionnaire] AS
 SELECT  QQP.[Questionnaire ID], COUNT(QQP.[Questionnaire ID]) as noOfQuestions
 FROM  [T1-Question Questionnaire Pairs] QQP, [T1-Questionnaire] Q
-WHERE QQP.[Questionnaire ID] = Q.[Questionnaire ID] AND Q.[URL] <> NULL
+WHERE QQP.[Questionnaire ID] = Q.[Questionnaire ID] AND Q.[URL] <> 'NULL'
 GROUP BY QQP.[Questionnaire ID]
 
 ---------- SPOCS ----------
@@ -430,12 +430,12 @@ IF @action = 'delete'
 */
 
 
---QUERY 7-- WORKS
+--QUERY 7 - WORKS WITH NEW DATA
 GO
 CREATE PROCEDURE dbo.Q7 @user_id varchar(30)
 AS
 --DECLARE @user_id varchar(30) --FOR TESTING
---set @user_id = '1'
+--set @user_id = '5'
 
 SELECT Title, [Version], COUNT([Question ID]) as q_count
 FROM  [T1-Questionnaire] q, [T1-User] u, [T1-Question Questionnaire Pairs] qqp
@@ -478,7 +478,7 @@ apps_table.appearances = (SELECT MAX(apps_table.appearances) FROM apps_table) AN
 apps_table.[Question ID] = q.[Question ID]
 
 
---QUERY 9-- WORKS
+--QUERY 9 - WORKS WITH NEW DATA
 GO
 CREATE PROCEDURE dbo.Q9
 AS
@@ -502,27 +502,16 @@ FROM [T1-Question] Q, [T1-User] U, [T1-Company] C, [T1-Questionnaire] Qnnaire,
 WHERE Q.[Creator ID] = U.[User ID] AND U.[Company ID] = C.[Registration Number] AND Qnnaire.[Creator ID] = U.[User ID] 
 GROUP BY C.[Brand Name]	
 
---Query 10 with view WORKS
-
-SELECT C.[Brand Name],AVG(QpQ.noOfQuestions) as [Average number Of Questionnaires]
+--Query 10 with view -thelo help gt exathika lio telika
+SELECT *
+--C.[Brand Name],AVG(QpQ.noOfQuestions) as [Average number Of Questions]
 FROM 
---[T1-Question] Q,
-[T1-User] U, [T1-Company] C, [T1-Questionnaire] Qnnaire, [Questions per Questionnaire] QpQ
+[T1-Company] C, [T1-Questionnaire] Qnnaire, [Questions per Questionnaire] QpQ,[T1-User] U
+--[T1-Question] Q,[T1-User] U, [T1-Company] C, [T1-Questionnaire] Qnnaire, [Questions per Questionnaire] QpQ
 WHERE 
---Q.[Creator ID] = U.[User ID] AND 
-U.[Company ID] = C.[Registration Number] AND Qnnaire.[Creator ID] = U.[User ID] 
+U.[Company ID] = C.[Registration Number] AND U.[User ID] = Qnnaire.[Creator ID] AND QpQ.[Questionnaire ID] = Qnnaire.[Questionnaire ID]
+--Q.[Creator ID] = U.[User ID] AND U.[Company ID] = C.[Registration Number] AND Qnnaire.[Creator ID] = U.[User ID] AND Qnnaire.[Questionnaire ID] = QpQ.[Questionnaire ID]
 GROUP BY C.[Brand Name]	
-
---Drop Constraints
---ALTER TABLE [dbo].[T1-Questionnaire] ADD
---CONSTRAINT [FK-Questionnaire-ParentQuestionnaire] FOREIGN KEY ([Parent ID]) REFERENCES [dbo].[T1-Questionnaire]([Questionnaire ID]), --ask pankris
---CONSTRAINT [FK-Questionnaire-CreatorUser] FOREIGN KEY ([Creator ID]) REFERENCES [dbo].[T1-User]([User ID]) ON UPDATE CASCADE ON DELETE SET NULL
-
---ALTER TABLE [dbo].[T1-Questionnaire]
---DROP CONSTRAINT [FK-Questionnaire-ParentQuestionnaire]
-
---ALTER TABLE [dbo].[T1-Questionnaire]
---DROP CONSTRAINT [FK-Questionnaire-CreatorUser]
 
  
 --Query 11 
@@ -537,12 +526,12 @@ SET @maxFromAverage = (	SELECT MAX(CompanyAvg.avgNoOfQuestions)
 								WHERE Q.[Creator ID] = U.[User ID] AND U.[Company ID] = C.[Registration Number] AND Qnnaire.[Creator ID] = U.[User ID] 
 								GROUP BY C.[Brand Name]) as CompanyAvg)
 
-SELECT Qnnaire.Title, Qnnaire.Version
+SELECT Qnnaire.[Questionnaire ID], Qnnaire.Title, Qnnaire.Version
 FROM [T1-Questionnaire] Qnnaire, [Questions per Questionnaire] QpQ
 WHERE QpQ.[Questionnaire ID] = Qnnaire.[Questionnaire ID] AND QpQ.NoOfQuestions > @maxFromAverage
 
 
---Query 12 WORKS
+--Query 12 - WORKS WITH NEW DATA
 GO
 CREATE PROCEDURE dbo.Q12
 AS
@@ -558,7 +547,7 @@ WHERE QpQ.noOfQuestions = @minNoOfQuestions
 
 
 
---Query 13
+--Query 13 - WORKS WITH NEW DATA
 GO
 CREATE PROCEDURE dbo.Q13
 AS
