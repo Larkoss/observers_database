@@ -118,59 +118,86 @@ CREATE TABLE [dbo].[T1-Log](
 	)
 
 ---------- INSERTS ----------
-INSERT INTO [T1-User] ([Name], [Birth Date], [Sex], [Position], [Username], [Password], [Privilages], [Company ID], [Manager ID]) VALUES ('Loukas Papalazarou', '2000/6/26', 'M', 'Development', 'lpapal03', 'hehehe', '1', NULL, '2')
-INSERT INTO [T1-User] ([Name], [Birth Date], [Sex], [Position], [Username], [Password], [Privilages], [Company ID], [Manager ID]) VALUES ('Kon Larkou', '1979/8/18', 'F', 'Marketing', 'klarko01', 'hihi', '1', NULL,  NULL)
-INSERT INTO [T1-User] ([Name], [Birth Date], [Sex], [Position], [Username], [Password], [Privilages], [Company ID], [Manager ID]) VALUES ('Kasoul', '1979/8/18', 'F', 'Marketing', 'ckasou01', 'hoho', '2', '1', '4')
-INSERT INTO [T1-User] ([Name], [Birth Date], [Sex], [Position], [Username], [Password], [Privilages], [Company ID], [Manager ID]) VALUES ('Manager', '1979/8/18', 'M', 'CEO', 'manag01', 'hoho', '3', '1', NULL)
-INSERT INTO [T1-User] ([Name], [Birth Date], [Sex], [Position], [Username], [Password], [Privilages], [Company ID], [Manager ID]) VALUES ('Christos', '1979/8/18', 'M', 'Katouris', 'celeft01', 'hoho', '3', '1', '4')
-
-
+--COMPANY DATA
 INSERT INTO [T1-Company] ([Registration Number], [Brand Name], [Induction Date]) VALUES ('1', 'Company 1', '2020/11/10')
 INSERT INTO [T1-Company] ([Registration Number], [Brand Name], [Induction Date]) VALUES ('2', 'Company 2', '2020/11/10')
-
-INSERT INTO	[T1-Question] ([Creator ID], [Type], [Description], [Text]) VALUES ('1', 'Free Text', 'The first question', 'Do you like db?')
-INSERT INTO [T1-Free Text Question] ([Question ID]) VALUES ('1')
-INSERT INTO	[T1-Question] ([Creator ID], [Type], [Description], [Text]) VALUES ('1', 'Arithmetic', 'The second question', 'How much do you like db?')
-INSERT INTO [T1-Arithmetic Question] ([Question ID], [MIN value], [MAX value]) VALUES ('1', '0', '10')
-
-INSERT INTO	[T1-Question] ([Creator ID], [Type], [Description], [Text]) VALUES ('3', 'Free Text', 'The first question', '1?')
-INSERT INTO	[T1-Question] ([Creator ID], [Type], [Description], [Text]) VALUES ('4', 'Free Text', 'The first question', '2??')
---DATA FOR QUESTIONNAIRE
+INSERT INTO [T1-Company] ([Registration Number], [Brand Name], [Induction Date]) VALUES ('3', 'Company 3', '2020/11/10')
 
 
-INSERT INTO [dbo].[T1-Questionnaire]([Title],[Version],[Parent ID],[Creator ID],[URL])VALUES('Qnnaire 1',1,1,1,'https://www.qnnaire1.com')																			   
-INSERT INTO [dbo].[T1-Questionnaire]([Title],[Version],[Parent ID],[Creator ID],[URL])VALUES('Qnnaire 2',1,2,1,'https://www.qnnaire2.com')																	   
-INSERT INTO [dbo].[T1-Questionnaire]([Title],[Version],[Parent ID],[Creator ID],[URL])VALUES('Qnnaire 2-1',2,2,1,'https://www.qnnaire2-1.com')																	   
-INSERT INTO [dbo].[T1-Questionnaire]([Title],[Version],[Parent ID],[Creator ID],[URL])VALUES('Qnnaire 2-2',3,2,1,NULL)																   
-INSERT INTO [dbo].[T1-Questionnaire]([Title],[Version],[Parent ID],[Creator ID],[URL])VALUES('Qnnaire 1-1',2,1,1,'https://www.qnnaire1-1.com')																   
-INSERT INTO [dbo].[T1-Questionnaire]([Title],[Version],[Parent ID],[Creator ID],[URL])VALUES('Qnnaire 1-2',3,1,1,NULL)
+--USER data
+INSERT INTO [T1-User] ([Name], [Birth Date], [Sex], [Position], [Username], [Password], [Privilages], [Company ID], [Manager ID]) VALUES ('Manager 1', '2000/6/26', 'M', 'Development', 'manager1', 'hohoho', '2', NULL, '1')
+INSERT INTO [T1-User] ([Name], [Birth Date], [Sex], [Position], [Username], [Password], [Privilages], [Company ID], [Manager ID]) VALUES ('Manager 2', '2000/6/26', 'M', 'Development', 'manager2', 'hohoho', '2', NULL, '2')
+INSERT INTO [T1-User] ([Name], [Birth Date], [Sex], [Position], [Username], [Password], [Privilages], [Company ID], [Manager ID]) VALUES ('Manager 3', '2000/6/26', 'M', 'Development', 'manager3', 'hohoho', '2', NULL, '3')
+INSERT INTO [T1-User] ([Name], [Birth Date], [Sex], [Position], [Username], [Password], [Privilages], [Company ID], [Manager ID]) VALUES ('User 1', '2000/6/26', 'M', 'Marketing', 'user1', 'hohoho', '2', 1, '1')
+INSERT INTO [T1-User] ([Name], [Birth Date], [Sex], [Position], [Username], [Password], [Privilages], [Company ID], [Manager ID]) VALUES ('User 2', '2000/6/26', 'M', 'Marketing', 'user2', 'hohoho', '2', 2, '2')
+INSERT INTO [T1-User] ([Name], [Birth Date], [Sex], [Position], [Username], [Password], [Privilages], [Company ID], [Manager ID]) VALUES ('User 3', '2000/6/26', 'M', 'Marketing', 'user3', 'hohoho', '2', 3, '3')
 
---DATA FOR QQP
+--QUESTIONNAIRE data
 
+INSERT INTO [dbo].[T1-Questionnaire]([Title],[Version],[Parent ID],[Creator ID],[URL])VALUES('Qnnaire 1',1,NULL,1,'https://www.qnnaire1.com')	
+INSERT INTO [dbo].[T1-Questionnaire]([Title],[Version],[Parent ID],[Creator ID],[URL])VALUES('Qnnaire 2',1,NULL,2,'https://www.qnnaire2.com')	
+INSERT INTO [dbo].[T1-Questionnaire]([Title],[Version],[Parent ID],[Creator ID],[URL])VALUES('Qnnaire 3',1,NULL,3,'https://www.qnnaire3.com')
+
+INSERT INTO [dbo].[T1-Questionnaire]([Title],[Version],[Parent ID],[Creator ID],[URL])VALUES('Qnnaire 1-1',2,1,4,'https://www.qnnaire1-1.com')	
+INSERT INTO [dbo].[T1-Questionnaire]([Title],[Version],[Parent ID],[Creator ID],[URL])VALUES('Qnnaire 2-1',2,2,5,'https://www.qnnaire2-1.com')	
+INSERT INTO [dbo].[T1-Questionnaire]([Title],[Version],[Parent ID],[Creator ID],[URL])VALUES('Qnnaire 3-1',2,3,6,'https://www.qnnaire3-1.com')	
+
+INSERT INTO [dbo].[T1-Questionnaire]([Title],[Version],[Parent ID],[Creator ID],[URL])VALUES('Qnnaire 1-1-1',3,4,1,'https://www.qnnaire1-1-1.com')	
+INSERT INTO [dbo].[T1-Questionnaire]([Title],[Version],[Parent ID],[Creator ID],[URL])VALUES('Qnnaire 1-1-2',3,4,4,'https://www.qnnaire1-1-2.com')		
+INSERT INTO [dbo].[T1-Questionnaire]([Title],[Version],[Parent ID],[Creator ID],[URL])VALUES('Qnnaire 2-1-1',3,5,2,'https://www.qnnaire2-1-1.com')	
+
+
+INSERT INTO [dbo].[T1-Questionnaire]([Title],[Version],[Parent ID],[Creator ID],[URL])VALUES('Qnnaire 1-1-1',4,4,4,NULL)
+INSERT INTO [dbo].[T1-Questionnaire]([Title],[Version],[Parent ID],[Creator ID],[URL])VALUES('Qnnaire 2-1-1',4,5,5,NULL)
+INSERT INTO [dbo].[T1-Questionnaire]([Title],[Version],[Parent ID],[Creator ID],[URL])VALUES('Qnnaire 3-1-1',4,6,5,NULL)
+
+--QUESTION data
+
+INSERT INTO	[T1-Question] ([Creator ID], [Type], [Description], [Text]) VALUES ('1', 'Free Text', 'I am question 1', 'Text cell')
+INSERT INTO	[T1-Question] ([Creator ID], [Type], [Description], [Text]) VALUES ('2', 'Free Text', 'I am question 2', 'Text cell')
+INSERT INTO	[T1-Question] ([Creator ID], [Type], [Description], [Text]) VALUES ('3', 'Free Text', 'I am question 3', 'Text cell')
+INSERT INTO	[T1-Question] ([Creator ID], [Type], [Description], [Text]) VALUES ('4', 'Free Text', 'I am question 4', 'Text cell')
+INSERT INTO	[T1-Question] ([Creator ID], [Type], [Description], [Text]) VALUES ('5', 'Free Text', 'I am question 5', 'Text cell')
+INSERT INTO	[T1-Question] ([Creator ID], [Type], [Description], [Text]) VALUES ('6', 'Free Text', 'I am question 6', 'Text cell')
+INSERT INTO	[T1-Question] ([Creator ID], [Type], [Description], [Text]) VALUES ('1', 'Free Text', 'I am question 7', 'Text cell')
+INSERT INTO	[T1-Question] ([Creator ID], [Type], [Description], [Text]) VALUES ('1', 'Free Text', 'I am question 8', 'Text cell')
+INSERT INTO	[T1-Question] ([Creator ID], [Type], [Description], [Text]) VALUES ('2', 'Free Text', 'I am question 9', 'Text cell')
+
+
+--QQP data
+
+--Company 1 related
 INSERT INTO [dbo].[T1-Question Questionnaire Pairs]([Question ID],[Questionnaire ID])VALUES(1,1)
-	 
-INSERT INTO [dbo].[T1-Question Questionnaire Pairs]([Question ID],[Questionnaire ID])VALUES(1,1)
-	 
-INSERT INTO [dbo].[T1-Question Questionnaire Pairs]([Question ID],[Questionnaire ID])VALUES(1,1)
-	 
-INSERT INTO [dbo].[T1-Question Questionnaire Pairs]([Question ID],[Questionnaire ID])VALUES(1,2)
-	 
-INSERT INTO [dbo].[T1-Question Questionnaire Pairs]([Question ID],[Questionnaire ID])VALUES(1,2)
-	 
-INSERT INTO [dbo].[T1-Question Questionnaire Pairs]([Question ID],[Questionnaire ID])VALUES(1,2)
-	 
-INSERT INTO [dbo].[T1-Question Questionnaire Pairs]([Question ID],[Questionnaire ID])VALUES(2,3)
-	 
-INSERT INTO [dbo].[T1-Question Questionnaire Pairs]([Question ID],[Questionnaire ID])VALUES(2,3)
-	 
-INSERT INTO [dbo].[T1-Question Questionnaire Pairs]([Question ID],[Questionnaire ID])VALUES(2,4)
-	 
-INSERT INTO [dbo].[T1-Question Questionnaire Pairs]([Question ID],[Questionnaire ID])VALUES(2,4)
-	 
+INSERT INTO [dbo].[T1-Question Questionnaire Pairs]([Question ID],[Questionnaire ID])VALUES(4,1)
+INSERT INTO [dbo].[T1-Question Questionnaire Pairs]([Question ID],[Questionnaire ID])VALUES(1,4)
+INSERT INTO [dbo].[T1-Question Questionnaire Pairs]([Question ID],[Questionnaire ID])VALUES(4,4)
+INSERT INTO [dbo].[T1-Question Questionnaire Pairs]([Question ID],[Questionnaire ID])VALUES(7,4)
+INSERT INTO [dbo].[T1-Question Questionnaire Pairs]([Question ID],[Questionnaire ID])VALUES(1,7)
+INSERT INTO [dbo].[T1-Question Questionnaire Pairs]([Question ID],[Questionnaire ID])VALUES(4,7)
+INSERT INTO [dbo].[T1-Question Questionnaire Pairs]([Question ID],[Questionnaire ID])VALUES(7,7)
+INSERT INTO [dbo].[T1-Question Questionnaire Pairs]([Question ID],[Questionnaire ID])VALUES(8,7)
+INSERT INTO [dbo].[T1-Question Questionnaire Pairs]([Question ID],[Questionnaire ID])VALUES(1,8)
+INSERT INTO [dbo].[T1-Question Questionnaire Pairs]([Question ID],[Questionnaire ID])VALUES(4,8)
+INSERT INTO [dbo].[T1-Question Questionnaire Pairs]([Question ID],[Questionnaire ID])VALUES(7,8)
+INSERT INTO [dbo].[T1-Question Questionnaire Pairs]([Question ID],[Questionnaire ID])VALUES(8,8)
+																							 
+--Company 2 related                                                                          
+INSERT INTO [dbo].[T1-Question Questionnaire Pairs]([Question ID],[Questionnaire ID])VALUES(2,2)
 INSERT INTO [dbo].[T1-Question Questionnaire Pairs]([Question ID],[Questionnaire ID])VALUES(2,5)
-	 
-INSERT INTO [dbo].[T1-Question Questionnaire Pairs]([Question ID],[Questionnaire ID])VALUES(2,5)
-
+INSERT INTO [dbo].[T1-Question Questionnaire Pairs]([Question ID],[Questionnaire ID])VALUES(5,5)
+INSERT INTO [dbo].[T1-Question Questionnaire Pairs]([Question ID],[Questionnaire ID])VALUES(2,9)
+INSERT INTO [dbo].[T1-Question Questionnaire Pairs]([Question ID],[Questionnaire ID])VALUES(5,9)
+INSERT INTO [dbo].[T1-Question Questionnaire Pairs]([Question ID],[Questionnaire ID])VALUES(9,9)
+																							 
+--Company 3 related                                                                          
+INSERT INTO [dbo].[T1-Question Questionnaire Pairs]([Question ID],[Questionnaire ID])VALUES(3,3)
+INSERT INTO [dbo].[T1-Question Questionnaire Pairs]([Question ID],[Questionnaire ID])VALUES(3,6)
+INSERT INTO [dbo].[T1-Question Questionnaire Pairs]([Question ID],[Questionnaire ID])VALUES(3,6)
+																							
+--NOT COMPLETED (URL = NULL) qqp                                                            
+INSERT INTO [dbo].[T1-Question Questionnaire Pairs]([Question ID],[Questionnaire ID])VALUES(1,10)
+INSERT INTO [dbo].[T1-Question Questionnaire Pairs]([Question ID],[Questionnaire ID])VALUES(2,11)
+INSERT INTO [dbo].[T1-Question Questionnaire Pairs]([Question ID],[Questionnaire ID])VALUES(3,12)
 
 
 --FOREIGN KEYS 
